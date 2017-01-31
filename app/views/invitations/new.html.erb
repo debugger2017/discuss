@@ -11,18 +11,23 @@
   </div>
 </div>
 
+
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
   <% if !(flash[:invite].nil?) %>
 	<ul>
 		<% flash[:invite].each do |id|%>
 			<li>
-				<%= User.find_by(id: id['id'].to_i).name %>
+				<% user = User.find_by(id: id['id'].to_i) %>
+        <%= user.name %>
         <%= form_for(:invite,url: invitations_path) do |f| %>
+          <%= f.hidden_field :id, :value => user.id%>
           <%= f.submit "Invite", class: "btn btn-primary" %>
 			   <% end %>
       </li>
       <%end%>    
 	</ul>
   <%end%>
+  </div>
 </div>
