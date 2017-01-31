@@ -9,7 +9,7 @@ class InvitationsController < ApplicationController
   def search
   	name = (params[:invite][:name]).downcase
   	result = User.select(:id).where("lower(name) like ?" , "%#{name}%")
- 	flash[:invite] = result
+ 	  flash[:invite] = result
   	redirect_to new_invitation_path
   end
 
