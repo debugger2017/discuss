@@ -1,0 +1,15 @@
+<% provide(:title, 'Discuss') %>
+<h1>Requests</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% names = Request.joins(:group).select(:name).where(is_granted: false) %>
+    <ul>
+    	<% names.each do |name|%>
+    	<li>
+    		<%= "Request for group #{name['name']} is came from  #{}" %>
+    	</li>
+    	<% end %>
+    </ul>
+  </div>
+</div>

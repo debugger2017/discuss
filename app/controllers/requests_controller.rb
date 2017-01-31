@@ -14,4 +14,7 @@ class RequestsController < ApplicationController
     request.save
   end
 
+  def index
+  end
+
 end

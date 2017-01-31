@@ -26,4 +26,6 @@ class InvitationsController < ApplicationController
     invitation.save
   end
 
+  def index
+  end
 end
