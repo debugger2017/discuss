@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'invitations/new'
+
+  get 'invitations/show'
+
   get 'sessions/new'
 
   get 'users/new'
