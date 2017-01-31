@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
 		@group = Group.new(group_params)
   		if @group.save
       	  flash[:success] = "Created group named #{@group.name}!!"
-      	  redirect_to @group
+      	  redirect_to new_invitation_path
   		else
   		  render 'new'
   	    end
