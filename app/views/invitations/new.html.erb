@@ -1,2 +1,22 @@
-<h1>Invitations#new</h1>
-<p>Find me in app/views/invitations/new.html.erb</p>
+<% provide(:title, 'Discuss') %>
+<h1>Invite someone!!!</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:invite,url: new_invitation_path) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if !(session[:invite].nil?) %>
+	<ul>
+		<% session[:invite].each do |id|%>
+			<li>
+				<% User.find_by(id: id).name %>
+			</li>
+		<% end %>
+	</ul>
+  <%end%>
+</div>
