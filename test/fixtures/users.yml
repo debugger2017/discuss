@@ -1,3 +1,4 @@
 kartik:
   name: Kartik Satoskar
   email: kartik.p.satoskar@gmail.com
+  password_digest: <%= User.digest('believe') %> 
