@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 		@user = current_user
 		@group = Group.new(group_params)
   		if @group.save
-      	  flash[:success] = "Created group!!"
+      	  flash[:success] = "Created group named #{@group.name}!!"
       	  redirect_to @group
   		else
   		  render 'new'
