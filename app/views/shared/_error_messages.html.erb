@@ -1,4 +1,5 @@
-<% if @user.errors.any? %>
+<% if (@user.nil?)%>
+  <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
       The form contains <%= pluralize(@user.errors.count, "error") %>.
@@ -9,9 +10,11 @@
     <% end %>
     </ul>
   </div>
+  <% end %>
 <% end %>
 
-<% if @group.errors.any? %>
+<% if !(@group.nil?)%>
+  <% if @group.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
       The form contains <%= pluralize(@group.errors.count, "error") %>.
@@ -22,4 +25,5 @@
     <% end %>
     </ul>
   </div>
+  <% end %>
 <% end %>
