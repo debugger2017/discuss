@@ -1,0 +1,31 @@
+<% provide(:title, 'Discuss') %>
+<h1>Search Groups!!!</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:request,url: rsearch_path) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <% if !(flash[:request].nil?) %>
+	<ul>
+		<% flash[:request].each do |id|%>
+			<li>
+				<% group = Group.find_by(id: id['id'].to_i) %>
+        <%= group.name %>
+        <%= form_for(:request,url: requests_path) do |f| %>
+          <%= f.hidden_field :id, :value => group.id%>
+          <%= f.submit "Request", class: "btn btn-primary" %>
+			   <% end %>
+      </li>
+      <%end%>    
+	</ul>
+  <%end%>
+  </div>
+</div>

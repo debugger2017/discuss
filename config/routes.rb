@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   
+  get 'requests/new'
+
   get 'invitations/new'
 
   get 'invitations/show'
 
   post '/search', to: 'invitations#search'
+  
+  post '/rsearch' , to: 'requests#search'
   get 'sessions/new'
 
   get 'users/new'
@@ -24,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :invitations
 
+  resources :requests
   get '/login' , to: 'sessions#new'
 
   post '/login', to: 'sessions#create'
