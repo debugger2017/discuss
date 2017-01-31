@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :groups
 
+  resources :invitations
+
   get '/login' , to: 'sessions#new'
 
   post '/login', to: 'sessions#create'
