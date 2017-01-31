@@ -14,9 +14,14 @@ class GroupTest < ActiveSupport::TestCase
 		assert_not @group.valid?
 	end
 
-	test "email addresses should be unique" do
+	test "name should be unique" do
     	duplicate_group = @group.dup
     	@group.save
     	assert_not duplicate_group.valid?
-  end
+ 	end
+
+ 	test "name should not be too long" do
+ 		@group.name = "a"*9
+ 		assert_not @group.valid?
+ 	end
 end
