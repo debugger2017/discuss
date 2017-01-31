@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'invitations/show'
 
-  post '/search', to: 'invitations#create'
+  post '/search', to: 'invitations#search'
   get 'sessions/new'
 
   get 'users/new'
