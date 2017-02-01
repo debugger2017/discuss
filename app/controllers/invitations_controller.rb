@@ -28,4 +28,15 @@ class InvitationsController < ApplicationController
 
   def index
   end
+
+  def respond
+    msg = params[:commit]
+    invitation = Invitation.find_by(id: params[:invite][:id])
+    invitation.update_attributes(is_accepted: true)
+    if msg == "Yes"
+      puts 'sfdfs'
+      membership = Membership.new(user_id: current_user.id , group_id: params[:invite][:group_id] , is_admin: false)
+      membership.save
+    end
+  end
 end
