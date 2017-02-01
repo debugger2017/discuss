@@ -17,4 +17,15 @@ class RequestsController < ApplicationController
   def index
   end
 
+  def grant
+    msg = params[:commit]
+    request = Request.find_by(id: params[:request][:id])
+    if msg == "Yes"
+      request.update_attributes(is_granted: true)
+      membership = Membership.new(user_id: params[:request][:sender_id] , group_id: params[:request][:group_id] , is_admin: false)
+      membership.save
+    else
+      request.update_attributes(is_granted: false)
+    end
+  end
 end
