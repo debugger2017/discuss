@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   delete '/logout' , to: 'sessions#destroy'
 
   post '/respond' , to: 'invitations#respond'
+
+  post '/grant' , to: 'requests#grant'
 end
