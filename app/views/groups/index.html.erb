@@ -1,0 +1,15 @@
+<% provide(:title, 'Discuss') %>
+<h1>My Groups</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% names = Membership.joins(:group).select(:name).where(is_admin: true) %>
+    <ul>
+    	<% names.each do |name|%>
+    	<li>
+    		<%= name['name'] %>
+    	</li>
+    	<% end %>
+    </ul>
+  </div>
+</div>
