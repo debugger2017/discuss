@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'posts/new'
+
+  get 'posts/show'
+
+  get 'posts/index'
+
   get 'requests/new'
 
   get 'invitations/new'
