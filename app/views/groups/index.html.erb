@@ -3,10 +3,12 @@
 
 <div class="groups">
     <ul>
-    	<% @groups.each do |group|%>
+    	<% @group_membership_all.each do |group_membership|%>
     	<li>
     		<%# binding.pry %>
-    		<%= link_to group['name'] , group_path(group) %>
+    		<% temp_group = Group.find_by(id:group_membership[:group_id])%>
+    		<%= link_to group_membership[:name], group_path(temp_group) %>
+    		<%= group_membership[:group_id] %>
     	</li>
     	<% end %>
     </ul>

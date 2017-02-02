@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 	
 	def index
-		@groups = Membership.joins(:group).select(:name,:id).where(user_id: current_user.id) 
+		@group_membership_all = Membership.joins(:group).select(:group_id,:name).where(user_id: current_user.id) 
 	end
 
 	def show
