@@ -1,6 +1,11 @@
 class GroupsController < ApplicationController
+	
+	def index
+		@groups = Membership.joins(:group).select(:name,:id).where(user_id: current_user.id) 
+	end
+
 	def show
-		
+		@group = Group.find(params[:id])
 	end
 
 	def new
@@ -22,15 +27,9 @@ class GroupsController < ApplicationController
   	    end
 	end
 
-
-
 	private 
 
 	def group_params
 		params.require(:group).permit(:name)
 	end
-
-	def index
-	end
-
 end

@@ -1,15 +1,13 @@
 <% provide(:title, 'Discuss') %>
 <h1>My Groups</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <% names = Membership.joins(:group).select(:name).where(user_id: current_user.id) %>
+<div class="groups">
     <ul>
-    	<% names.each do |name|%>
+    	<% @groups.each do |group|%>
     	<li>
-    		<%= name['name'] %>
+    		<%# binding.pry %>
+    		<%= link_to group['name'] , group_path(group) %>
     	</li>
     	<% end %>
     </ul>
-  </div>
 </div>
