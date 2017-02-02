@@ -1,15 +1,18 @@
-<% provide(:title , @group.name) %>
+<% provide(:title , @group) %>
 <div class = "row">
 	<aside class = "col-md-4">
 		<section class = "group_info">
 			<h1>
 			<%= @group.name %>
-			<div class="form-group">
-  				<label for="comment">Comment:</label>
-  				<textarea class="form-control" rows="5" id="comment">
-  				</textarea>
-			</div>
+			<%= @group.id %>
 			</h1>
+			 <%= form_for(:post,url: posts_path) do |f| %>
+     		 	<%#= render 'shared/error_messages' %>
+      			<%= f.hidden_field :id, :value => @group.id%>
+      			<%= f.label :name %>
+      			<%= f.text_area :name %>
+      			<%= f.submit "Submit post", class: "btn btn-primary" %>
+    		<% end %>
 		</section>
 	</aside>
 </div>

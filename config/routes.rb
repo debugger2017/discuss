@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   get 'invitations/show'
 
-   post '/search', to: 'invitations#search'
-  
+  post '/search', to: 'invitations#search'
+
   post '/rsearch' , to: 'requests#search'
   get 'sessions/new'
 

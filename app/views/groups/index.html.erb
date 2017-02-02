@@ -6,8 +6,8 @@
     	<% @group_membership_all.each do |group_membership|%>
     	<li>
     		<%# binding.pry %>
-    		<% temp_group = Group.find_by(id:group_membership[:group_id])%>
-    		<%= link_to group_membership[:name], group_path(temp_group) %>
+    		<% @temp_group = Group.find_by(id:group_membership[:group_id])%>
+    		<%= link_to group_membership[:name], group_path(@temp_group) %>
     		<%= group_membership[:group_id] %>
     	</li>
     	<% end %>
