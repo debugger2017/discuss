@@ -5,10 +5,11 @@
 <p> <%= post_object.content %>
 
 <div class = "comments">
-	<%= form_for(:comment,url: comment_path(comment)) do |f| %>
-      	<%= f.hidden_field :id, :value => @group.id%>
-      	<%= f.label :name %>
-      	<%= f.text_area :content%>
-      	<%= f.submit "Submit post", class: "btn btn-primary" %>
-	<% end %>
+	<%= form_for(:comment,url: comments_path) do |f| %>
+     	<%#= render 'shared/error_messages' %>
+      	<%= f.hidden_field :id, :value => post_object.id%>
+      	<%= f.label :comment %>
+      	<%= f.text_field :content%>
+      	<%= f.submit "Submit comment", class: "btn btn-primary" %>
+    <% end %>
 </div>
