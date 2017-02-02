@@ -3,3 +3,12 @@
 	Comments on 
 </h1>
 <p> <%= post_object.content %>
+
+<div class = "comments">
+	<%= form_for(:comment,url: posts_path) do |f| %>
+     		 	<%#= render 'shared/error_messages' %>
+      			<%= f.hidden_field :id, :value => @group.id%>
+      			<%= f.label :name %>
+      			<%= f.text_area :content%>
+      			<%= f.submit "Submit post", class: "btn btn-primary" %>
+</div>
