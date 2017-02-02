@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131223014) do
+ActiveRecord::Schema.define(version: 20170202093510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20170131223014) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "membership_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "group_id"
@@ -60,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170131223014) do
   add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
+  add_foreign_key "posts", "memberships"
   add_foreign_key "requests", "groups"
   add_foreign_key "requests", "users", column: "sender_id"
 end
