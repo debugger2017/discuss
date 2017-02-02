@@ -6,4 +6,5 @@ class Group < ApplicationRecord
 	has_many :users , :through => :memberships	
 	has_many :invitations , dependent: :destroy
 	has_many :requests , dependent: :destroy
+	has_many :comments , :through => :memberships
 end
