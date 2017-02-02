@@ -9,9 +9,14 @@ class PostsController < ApplicationController
   end
 
   def create
-  	
-  	group = Group.find_by(id: params[:post][:id].to_i)
-  	redirect_to group_path(group)
+  	user = current_user.id
+  	group = params[:post][:id].to_i
+  	membership = Membership.select(:id).where(user_id: user, group_id: group).first
+  	post_content = params[:post][:content]
+  	new_post = Post.new(content: post_content, membership_id: membership['id'])
+  	new_post.save
+  	group_object = Group.find_by(id: group)
+  	redirect_to group_path(group_object)
   end
 
 end

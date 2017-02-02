@@ -10,9 +10,25 @@
      		 	<%#= render 'shared/error_messages' %>
       			<%= f.hidden_field :id, :value => @group.id%>
       			<%= f.label :name %>
-      			<%= f.text_area :name %>
+      			<%= f.text_area :content%>
       			<%= f.submit "Submit post", class: "btn btn-primary" %>
     		<% end %>
 		</section>
 	</aside>
 </div>
+
+<div class = "posts">
+	<% joined_table = Post.joins(:membership).joins("INNER JOIN groups ON Groups.id = Memberships.group_id").order(created_at: :desc)%>
+	<% posts = joined_table.select(:id,:group_id,:content,:created_at,:user_id).where("Memberships.group_id = #{@group.id}") %>
+	<ul>
+		<% posts.each do |post| %>
+			<li>
+				<%= link_to post['content'] , post_path(post) %> 
+				<%= time_ago_in_words(post['created_at']) %>
+				<% user = User.select(:id,:name).where(id: post['user_id']).first %>
+				posted by <%= link_to user['name'] , user_path(user)%>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
