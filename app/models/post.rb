@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
 	belongs_to :membership
-	has_many :comments
+	#belongs_to :user  
+	#belongs_to :group 
+	has_many :comments , dependent: :destroy
 end

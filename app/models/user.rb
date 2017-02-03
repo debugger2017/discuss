@@ -7,10 +7,13 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: { minimum: 6 }	,allow_nil:true						
 	
 	has_many :memberships , dependent: :destroy
-	has_many :groups , :through => :memberships
-	has_many :comments , :through => :memberships	
-
-
+	has_many :groups , :through => :memberships, dependent: :destroy
+	has_many :posts , :through => :memberships , dependent: :destroy
+	has_many :comments , dependent: :destroy
+	has_many :invites , :class_name => 'Invitation' , :foreign_key => 'sender_id' , dependent: :destroy
+	has_many :invitations , :class_name => 'Invitation' , :foreign_key => 'receiver_id' , dependent: :destroy
+	has_many :requests , :foreign_key => 'sender_id' , dependent: :destroy
+	
 
 	def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

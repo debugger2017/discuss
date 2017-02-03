@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202192334) do
+ActiveRecord::Schema.define(version: 20170202231105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "post_id"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "membership_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20170202192334) do
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.integer  "group_id"
-    t.boolean  "is_accepted", default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "is_accepted"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -70,7 +70,8 @@ ActiveRecord::Schema.define(version: 20170202192334) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
-  add_foreign_key "comments", "memberships"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "invitations", "groups"
   add_foreign_key "invitations", "users", column: "receiver_id"
   add_foreign_key "invitations", "users", column: "sender_id"
