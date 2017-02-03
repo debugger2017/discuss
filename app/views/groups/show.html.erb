@@ -11,6 +11,7 @@
       			<%= f.hidden_field :id, :value => @group.id%>
       			<%= f.label :name %>
       			<%= f.text_area :content%>
+      			<%= f.file_field :avatar %>
       			<%= f.submit "Submit post", class: "btn btn-primary" %>
     		<% end %>
 		</section>
@@ -23,6 +24,8 @@
 	<ul>
 		<% posts.each do |post| %>
 			<li>
+				<% #binding.pry %>
+				<%= link_to 'attachement' , Post.last.avatar.url(:original, false) %>
 				<%= link_to post['content'] , post_path(post) %> 
 				<%= time_ago_in_words(post['created_at']) %>
 				<% user = User.select(:id,:name).where(id: post['user_id']).first %>
