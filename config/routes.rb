@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get '/invite' , to: 'groups#invite'
+  post '/save_invite' , to: 'groups#save_invite'
+
   get 'comments/new'
 
   get 'comments/show'

@@ -27,6 +27,17 @@ class GroupsController < ApplicationController
   	    end
 	end
 
+	def invite
+	end
+
+
+
+
+
+
+
+
+
 	private 
 
 	def group_params
